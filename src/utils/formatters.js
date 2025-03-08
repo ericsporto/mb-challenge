@@ -1,0 +1,1 @@
+export const removeMask = (value) => value.replace(/\D/g, '');

@@ -1,0 +1,73 @@
+:root {
+  --color-primary: #ff9900;
+  --color-secondary: #000000;
+  --color-bg: #FFFFFF;
+  --color-error: #e74c3c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  width: 100vw;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+}
+
+.primary-color {
+  color: var(--color-primary);
+}
+
+.secondary-color {
+  color: var(--color-secondary);
+}
+
+.error-color {
+  color: var(--color-error);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 370px;
+    padding: 12px;
+  }
+}
+
+.form-header p {
+  padding: 8px 0;
+}
+
+.form-input-field {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.form-input-field > * {
+  padding: 10px 0;
+}
+
+.error-message {
+  color: var(--color-error);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+}
