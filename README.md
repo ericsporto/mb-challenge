@@ -33,14 +33,14 @@ Este é um sistema de cadastro de usuários desenvolvido com **Vue 3** no fronte
 - **Node.js** (v16 ou superior)
 - **NPM**
 
-#### Passo 1: Clonando o repositório
+### Passo 1: Clonando o repositório
 
 ```bash
 git clone https://github.com/ericsporto/mb-challenge
 cd mb-challenge
 ```
 
-#### Passo 2: Configurando o Frontend
+### Passo 2: Configurando o Frontend
 
 ### 1-Acesse a pasta do frontend:
 
@@ -62,7 +62,7 @@ npm run dev
 
 ## O frontend estará rodando em http://localhost:5173
 
-#### Passo 3: Configurando o Backend
+### Passo 3: Configurando o Backend
 
 ### 1-Acesse a pasta do backend:
 
@@ -85,19 +85,19 @@ node server.js
 ## O servidor estará rodando em http://localhost:3000
 
 
-#### Como Testar o Fluxo de Cadastro
+### Como Testar o Fluxo de Cadastro
 
-1-Abra o navegador e acesse http://localhost:5173 (frontend).
-2-Preencha o formulário de cadastro com os dados necessários seguindo os 4 passos. Você tem a opção de voltar e editar os dados o quanto quiser. A aplicação possui um sistema de persistência de dados entre os steps que só é limpo no final do fluxo ao ter sucesso no cadastro.
-3-Clique em "Cadastrar" e aguarde a resposta do backend e em caso de sucesso, a abertura da nova aba com os dados de registro. Para simular erros, o código de envio do formulário pode ser manipulado no arquivo ReviewInformationStep.vue a partir da linha 111.
-4-A resposta da tentativa de cadastro será exibida como um toast na tela sinalizando um erro ou um sucesso. Foram implementados retornos de exemplo para casos de falha na autenticação, erro no envio de dados obrigatórios e dados inconscientes.
-5-Em caso de sucesso, além do toast, uma nova aba do navegador será aberta com as informações do usuário registradas. Foi implementando um timeout simulando o tempo de resposta das requisições.
+- Abra o navegador e acesse http://localhost:5173 (frontend).
+- Preencha o formulário de cadastro com os dados necessários seguindo os 4 passos. Você tem a opção de voltar e editar os dados o quanto quiser. A aplicação possui um sistema de persistência de dados entre os steps que só é limpo no final do fluxo ao ter sucesso no cadastro.
+- Clique em "Cadastrar" e aguarde a resposta do backend e em caso de sucesso, a abertura da nova aba com os dados de registro. Para simular erros, o código de envio do formulário pode ser manipulado no arquivo ReviewInformationStep.vue a partir da linha 111.
+- A resposta da tentativa de cadastro será exibida como um toast na tela sinalizando um erro ou um sucesso. Foram implementados retornos de exemplo para casos de falha na autenticação, erro no envio de dados obrigatórios e dados inconscientes.
+- Em caso de sucesso, além do toast, uma nova aba do navegador será aberta com as informações do usuário registradas. Foi implementando um timeout simulando o tempo de resposta das requisições.
 
 # Endpoints da API
 
-**POST /registration**
+- **POST /registration**
 
--Descrição: Envia os dados do usuário para registro.
+- **Descrição**: Envia os dados do usuário para registro.
 
 **Requisição**
 {
@@ -118,9 +118,9 @@ node server.js
   "success": true
 }
 
-**GET /registration**
+- **GET /registration**
 
--Descrição: Retorna os dados do usuário registrado (se disponível).
+- **Descrição**: Retorna os dados do usuário registrado (se disponível).
 
 
 **Resposta**
@@ -132,7 +132,3 @@ node server.js
 <p><strong>Razão Social:</strong> Razão Social</p>
 <p><strong>CNPJ:</strong> 12345678000195</p>
 <p><strong>Data de Abertura:</strong> 2000-05-15</p>
-
-### Considerações Finais
-
-# Este projeto é uma implementação simples de um sistema de cadastro com a exibição dos dados em uma nova aba. As funcionalidades principais incluem o cadastro via API e a exibição das informações do usuário em formato HTML.
