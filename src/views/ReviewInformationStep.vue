@@ -7,6 +7,8 @@ import ButtonComponent from '@/components/ButtonComponent.vue';
 import { useReviewInformationStep } from '@/composables/useReviewInformationStep';
 import { useStepperManager } from '@/composables/useStepperManager';
 import { removeMask } from '@/utils/formatters';
+import userRegister from '@/services/register';
+import getRegistered from '@/services/getRegistered';
 
 const {stepChange} = useStepperManager()
 const isLegalPerson = ref();
@@ -30,8 +32,10 @@ const {
   emailError,
   password,
   passwordError,
+  isLoading,
   handleInputChange,
   handleKeyPress,
+  showToast,
   validateFormLegal,
   validateFormIndividual,
 } = useReviewInformationStep();
@@ -102,23 +106,39 @@ const handleSubmit = async () => {
 
   if (!isValid) return;
 
+  isLoading.value = true;
+
   const formData = {
     email: email.value,
     password: password.value,
-    legalName: isLegalPerson.value ? legalName.value : '',
-    socialName: !isLegalPerson.value ? socialName.value : '',
+    phone: removeMask(phone.value),
+    legal_name: isLegalPerson.value ? legalName.value : '',
+    social_name: !isLegalPerson.value ? socialName.value : '',
     cpf: !isLegalPerson.value ? removeMask(cpf.value) : '',
     cnpj: isLegalPerson.value ? removeMask(cnpj.value) : '',
-    birthDate: !isLegalPerson.value ? birthDate.value : '',
-    birthOpened: isLegalPerson.value ? birthOpened.value : '',
-    phone: removeMask(phone.value),
+    birth_date: !isLegalPerson.value ? birthDate.value : '',
+    birth_opened: isLegalPerson.value ? birthOpened.value : '',
   };
 
   const filteredData = Object.fromEntries(
     Object.entries(formData).filter(([_, value]) => value !== '' && value !== null && value !== undefined)
   );
 
-  console.log('Data to send:', filteredData);
+  setTimeout(async () => {
+    const response = await userRegister(filteredData);
+    isLoading.value = false;
+    showToast(response.message, response.success);
+
+    setTimeout(() => {
+      if (response.success) {
+        getRegistered();
+      }
+      localStorage.clear()
+      localStorage.setItem('step', "1");
+      emit('stepChange');
+    }, 1500)
+  }, 1000);
+
 };
 
 const handleBack = () => {
@@ -161,6 +181,7 @@ const handleBack = () => {
           :id="isLegalPerson ? 'cnpj' : 'cpf'"
           :value="isLegalPerson ? cnpj : cpf"
           v-model="currentDocument"
+          @keypress="handleKeyPress"
           @input="
             isLegalPerson
               ? handleInputChange($event, 'cnpj')
@@ -185,6 +206,7 @@ const handleBack = () => {
           id="phone"
           :value="phone"
           v-model="phone"
+          @keypress="handleKeyPress"
           @input="handleInputChange($event, 'phone')"
           :alertMessage="phoneError"
           :hasAlert="!!phoneError"
@@ -206,7 +228,12 @@ const handleBack = () => {
             variant="secondary"
             type="button"
           />
-          <ButtonComponent label="Continuar" variant="primary" type="submit" />
+          <ButtonComponent
+            label="Continuar"
+            variant="primary"
+            type="submit"
+            :isLoading="isLoading"
+          />
         </div>
       </div>
     </form>

@@ -21,7 +21,7 @@ const usePasswordStep = () => {
       isValid = false;
     }
 
-    if (password.value.length < 6) {
+    if (password.value && password.value.length < 6) {
       passwordError.value = 'Senha precisa ter pelo menos 6 caracteres.';
       isValid = false;
     }

@@ -214,6 +214,32 @@ const useReviewInformationStep = () => {
     return isValid;
   };
 
+  const showToast = (message, isSuccess) => {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.position = 'fixed';
+    toast.style.bottom = '20px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    toast.style.padding = '12px 20px';
+    toast.style.borderRadius = '5px';
+    toast.style.fontSize = '16px';
+    toast.style.color = '#fff';
+    toast.style.backgroundColor = isSuccess ? 'green' : 'red';
+    toast.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.2)';
+    toast.style.opacity = '1';
+    toast.style.transition = 'opacity 0.5s ease-in-out';
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => {
+        toast.remove();
+      }, 500);
+    }, 3000);
+  };
+
   return {
     handleInputChange,
     handleKeyPress,
@@ -245,6 +271,7 @@ const useReviewInformationStep = () => {
     birthOpenedError,
     phoneError,
     isLoading,
+    showToast,
     validateFormIndividual,
     validateFormLegal,
   };
