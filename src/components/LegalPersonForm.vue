@@ -6,6 +6,7 @@ import InputComponent from '@/components/InputComponent.vue';
 import ButtonComponent from '@/components/ButtonComponent.vue';
 import { useDataStep } from '@/composables/useDataStep';
 import { useStepperManager } from '@/composables/useStepperManager';
+import { handleKeyPress } from '@/utils/formatters';
 
 const {stepChange} = useStepperManager()
 
@@ -19,7 +20,6 @@ const {
   birthOpenedError,
   phoneError,
   handleInputChange,
-  handleKeyPress,
   validateFormLegal,
 } = useDataStep();
 

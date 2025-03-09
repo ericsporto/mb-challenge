@@ -4,6 +4,7 @@ import { onBeforeMount } from 'vue';
 import IndividualForm from '@/components/IndividualForm.vue';
 import LegalPersonForm from '@/components/LegalPersonForm.vue';
 
+const emit = defineEmits(['stepChange', 'stepChangeBack']);
 const isLegalPerson = ref();
 
 onBeforeMount(() => {

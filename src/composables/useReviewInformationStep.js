@@ -1,10 +1,5 @@
 import { ref } from 'vue';
-
-const validateEmail = (email) => {
-  const value = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  return value.test(email);
-};
-
+import { formatCPF, formatCNPJ, formatPhone, validateEmail } from '@/utils/formatters';
 
 const useReviewInformationStep = () => {
   const email = ref('');
@@ -50,30 +45,6 @@ const useReviewInformationStep = () => {
     phone: phone,
   };
 
-  const formatCPF = (value) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-  };
-
-  const formatPhone = (value) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{2})(\d)/, '($1) $2')
-      .replace(/(\d{5})(\d{1,4})$/, '$1-$2');
-  };
-
-  const formatCNPJ = (value) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/^(\d{2})(\d)/, '$1.$2')
-      .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
-      .replace(/^(\d{2})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3/$4')
-      .replace(/^(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})(\d)/, '$1.$2.$3/$4-$5');
-  };
-
   const handleInputChange = (event, fieldName) => {
     let targetValue = event.target.value;
 
@@ -94,12 +65,6 @@ const useReviewInformationStep = () => {
     }
   };
 
-  const handleKeyPress = (event) => {
-    const key = event.key;
-    if (/[^0-9]/.test(key)) {
-      event.preventDefault();
-    }
-  };
 
   const validateFormIndividual = () => {
     let isValid = true;
@@ -242,7 +207,6 @@ const useReviewInformationStep = () => {
 
   return {
     handleInputChange,
-    handleKeyPress,
     legalName,
     socialName,
     cpf,

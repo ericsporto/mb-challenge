@@ -4,11 +4,10 @@ import StepperComponent from '@/components/StepperComponent.vue';
 import TitleComponent from '@/components/TitleComponent.vue';
 import InputComponent from '@/components/InputComponent.vue';
 import ButtonComponent from '@/components/ButtonComponent.vue';
-import { useWelcomeStep } from '@/composables/useWelcomeStep';
 import { usePasswordStep } from '@/composables/usePasswordStep';
 import { useStepperManager } from '@/composables/useStepperManager';
 
-const {stepChange, steps} = useStepperManager()
+const { stepChange } = useStepperManager()
 
 const {
   password,
@@ -17,7 +16,7 @@ const {
   validateForm
 } = usePasswordStep();
 
-const emit = defineEmits(['stepChange']);
+const emit = defineEmits(['stepChange', 'stepChangeBack']);
 
 onBeforeMount(() => {
   password.value = localStorage.getItem('password') || '';

@@ -90,7 +90,7 @@ node server.js
 - Abra o navegador e acesse http://localhost:5173 (frontend).
 - Preencha o formulário de cadastro com os dados necessários seguindo os 4 passos. Você tem a opção de voltar e editar os dados o quanto quiser. A aplicação possui um sistema de persistência de dados entre os steps que só é limpo no final do fluxo ao ter sucesso no cadastro.
 - Clique em "Cadastrar" e aguarde a resposta do backend e em caso de sucesso, a abertura da nova aba com os dados de registro. Para simular erros, o código de envio do formulário pode ser manipulado no arquivo ReviewInformationStep.vue a partir da linha 111.
-- A resposta da tentativa de cadastro será exibida como um toast na tela sinalizando um erro ou um sucesso. Foram implementados retornos de exemplo para casos de falha na autenticação, erro no envio de dados obrigatórios e dados inconscientes.
+- A resposta da tentativa de cadastro será exibida como um toast na tela sinalizando um erro ou um sucesso. Foram implementados retornos de exemplo para casos de falha na autenticação (pode ser testado mudando o valor de Authorization na linha 9 do arquivo register.js), erro no envio de dados obrigatórios e dados inconscientes.
 - Em caso de sucesso, além do toast, uma nova aba do navegador será aberta com as informações do usuário registradas. Foi implementando um timeout simulando o tempo de resposta das requisições.
 
 # Endpoints da API

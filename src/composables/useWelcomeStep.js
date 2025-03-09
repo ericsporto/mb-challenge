@@ -1,9 +1,5 @@
 import { ref } from 'vue';
-
-const validateEmail = (email) => {
-  const value = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  return value.test(email);
-};
+import { validateEmail } from '@/utils/formatters';
 
 const useWelcomeStep = () => {
   const email = ref('');

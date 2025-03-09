@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { formatCPF, formatCNPJ, formatPhone } from '@/utils/formatters';
 
 const useDataStep = () => {
   const legalName = ref('');
@@ -27,30 +28,6 @@ const useDataStep = () => {
     phone: phone,
   };
 
-  const formatCPF = (value) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-  };
-
-  const formatPhone = (value) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/(\d{2})(\d)/, '($1) $2')
-      .replace(/(\d{5})(\d{1,4})$/, '$1-$2');
-  };
-
-  const formatCNPJ = (value) => {
-    return value
-      .replace(/\D/g, '')
-      .replace(/^(\d{2})(\d)/, '$1.$2')
-      .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
-      .replace(/^(\d{2})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3/$4')
-      .replace(/^(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})(\d)/, '$1.$2.$3/$4-$5');
-  };
-
   const handleInputChange = (event, fieldName) => {
     let targetValue = event.target.value;
 
@@ -68,14 +45,6 @@ const useDataStep = () => {
 
     if (inputMappings[fieldName]) {
       inputMappings[fieldName].value = targetValue;
-    }
-  };
-
-
-  const handleKeyPress = (event) => {
-    const key = event.key;
-    if (/[^0-9]/.test(key)) {
-      event.preventDefault();
     }
   };
 
@@ -154,7 +123,6 @@ const useDataStep = () => {
 
   return {
     handleInputChange,
-    handleKeyPress,
     legalName,
     socialName,
     cpf,

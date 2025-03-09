@@ -9,6 +9,7 @@ import { useStepperManager } from '@/composables/useStepperManager';
 import { removeMask } from '@/utils/formatters';
 import userRegister from '@/services/register';
 import getRegistered from '@/services/getRegistered';
+import { handleKeyPress } from '@/utils/formatters';
 
 const {stepChange} = useStepperManager()
 const isLegalPerson = ref();
@@ -34,13 +35,12 @@ const {
   passwordError,
   isLoading,
   handleInputChange,
-  handleKeyPress,
   showToast,
   validateFormLegal,
   validateFormIndividual,
 } = useReviewInformationStep();
 
-const emit = defineEmits(['stepChange']);
+const emit = defineEmits(['stepChange', 'stepChangeBack']);
 
 onBeforeMount(() => {
   const savedIsLegalPerson = localStorage.getItem('isLegalPerson');
@@ -132,10 +132,10 @@ const handleSubmit = async () => {
     setTimeout(() => {
       if (response.success) {
         getRegistered();
+        localStorage.clear()
+        localStorage.setItem('step', "1");
+        emit('stepChange');
       }
-      localStorage.clear()
-      localStorage.setItem('step', "1");
-      emit('stepChange');
     }, 1500)
   }, 1000);
 

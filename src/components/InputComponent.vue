@@ -7,14 +7,14 @@ const props = defineProps({
   required: Boolean,
   id: String,
   modelValue: [String, Number, Boolean],
-  checked: Boolean,
+  checked: Boolean | String,
   maxLength: Number,
   hasAlert: Boolean,
   alertMessage: String
 
 })
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'stepChangeBack']);
 
 const handleChange = (event) => {
   const newValue = event.target.value;

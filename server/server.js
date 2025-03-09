@@ -19,7 +19,7 @@ const isAuthenticated = (req, res, next) => {
 
 let registeredUser = null;
 
-app.get('/registration', (req, res) => {
+app.get('/registration', (_, res) => {
   if (!registeredUser) {
     return res.status(404).send('<h1>Nenhum usuário cadastrado</h1>');
   }

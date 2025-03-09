@@ -40,8 +40,8 @@ button {
   border-radius: 5px;
 }
 .primary:hover {
-  background-color: #d78c1b;
-  transition: ease-in-out 0.2s;
+  background-color: var(--color-button-primary-hover);
+  transition: ease-in-out 0.3s;
 }
 .secondary {
   background-color: var(--color-bg);
@@ -51,8 +51,9 @@ button {
   border-radius: 5px;
 }
 .secondary:hover {
-  background-color: #f4f4f4;
-  transition: ease-in-out 0.2s;
+  background-color: var(--color-button-primary-hover);
+  color: var(--color-button-secondary-hover);
+  transition: ease-in-out 0.3s;
 }
 .spinner {
   width: 23px;
@@ -67,9 +68,9 @@ button {
   height: 100%;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #ffffff;
-  border-left-color: #ffffff;
-  border-right-color: #ffffff;
+  border-top-color: var(--color-bg);
+  border-left-color: var(--color-bg);
+  border-right-color: var(--color-bg);
   animation: spin 1s linear infinite;
 }
 

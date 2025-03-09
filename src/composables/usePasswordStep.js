@@ -7,7 +7,7 @@ const usePasswordStep = () => {
   const passwordError = ref('');
 
   const handleInputChange = (event) => {
-    email.value = event.target.value;
+    password.value = event.target.value;
     isPasswordValid.value = false;
   };
 
